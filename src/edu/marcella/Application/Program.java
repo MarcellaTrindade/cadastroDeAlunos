@@ -21,11 +21,13 @@ public class Program {
             System.out.println("Erro: RuntimeException");
         }
     }
-
+    //função menu
     public static void menu(){
-        System.out.println("(1) - Cadastrar Alunos");
-        System.out.println("(2) - Exibir Alunos");
+        System.out.println("(1) - Matricular alunos");
+        System.out.println("(2) - Exibir alunos matriculados");
+        System.out.println("(3) - Desfazer matrícula");
         System.out.println("(0) - Sair");
+        System.out.print(": ");
 
         int opcMenu = sc.nextInt();
         sc.nextLine();
@@ -40,6 +42,9 @@ public class Program {
                 break;
             case 2:
                 exibirAlunos(alunos);
+                menu();
+            case 3:
+                removerAluno();
                 menu();
 
         }
@@ -66,6 +71,7 @@ public class Program {
             sc.nextLine();
 
             alunos.add(new Aluno(alunoCodId, alunoNome, alunoTurma, alunoTurno));
+            bubbleSort(alunos);
             System.out.println(alunos.get(alunos.size() - 1));
 
             System.out.println("Deseja adicionar mais algum aluno?");
@@ -75,10 +81,57 @@ public class Program {
         }while (resp == 1);
     }
 
+    //função para exibir a lista de alunos
     public static void exibirAlunos(List<Aluno> alunos) {
         System.out.println("Alunos Cadastrados");
         for (Aluno aluno : alunos) {
             System.out.println(aluno);
         }
     }
+
+    //função para buscar um aluno pelo Id
+
+    public static Aluno buscarIdAluno(){
+        System.out.println("Informe o Código do Aluno: ");
+        int alunoCodId = sc.nextInt();
+
+        for (Aluno aluno: alunos){
+            if (alunoCodId == aluno.getIdAluno()){
+                return aluno;
+            }
+        }
+        return null;
+    }
+
+    //função para remover um aluno
+    public static void removerAluno(){
+        Aluno alunoEncontrado = buscarIdAluno();
+
+        if (alunoEncontrado != null){
+            System.out.println("Aluno Código '"+alunoEncontrado.getIdAluno()+"' Removido");
+            alunos.remove(alunoEncontrado);
+        }
+    }
+
+    public static void bubbleSort(List<Aluno> alunos){
+        int n = alunos.size();
+        boolean swapped;
+
+        for (int i = 0; i < n - 1; i++){
+            swapped = false;
+            for (int j = 0; j < n - 1; j++){
+                if (alunos.get(j).getIdAluno() > alunos.get(j + 1).getIdAluno()){
+                    Aluno temp = alunos.get(j);
+                    alunos.set(j, alunos.get(j+1));
+                    alunos.set(j + 1, temp);
+                    swapped = true;
+                }
+            }
+            if (!swapped){
+                break;
+            }
+        }
+    }
+
+
 }
