@@ -3,10 +3,10 @@ package edu.marcella.Model.Entities;
 public class Aluno {
     private int idAluno;
     private String nome;
-    private String turma;
+    private int turma;
     private int turno;
 
-    public Aluno(int idAluno, String nome, String turma, int turno) {
+    public Aluno(int idAluno, String nome, int turma, int turno) {
         this.idAluno = idAluno;
         this.nome = nome;
         this.turma = turma;
@@ -38,11 +38,11 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public String getTurma() {
+    public int getTurma() {
         return turma;
     }
 
-    public void setTurma(String turma) {
+    public void setTurma(int turma) {
         this.turma = turma;
     }
 

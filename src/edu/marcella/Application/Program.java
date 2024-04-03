@@ -26,6 +26,7 @@ public class Program {
         System.out.println("(1) - Matricular alunos");
         System.out.println("(2) - Exibir alunos matriculados");
         System.out.println("(3) - Desfazer matrícula");
+        System.out.println("(4) - Verificar Turma");
         System.out.println("(0) - Sair");
         System.out.print(": ");
 
@@ -46,7 +47,9 @@ public class Program {
             case 3:
                 removerAluno();
                 menu();
-
+            case 4:
+                buscarTurma();
+                menu();
         }
     }
 
@@ -64,7 +67,7 @@ public class Program {
             String alunoNome = sc.nextLine();
 
             System.out.println("Turma do Aluno: ");
-            String alunoTurma = sc.nextLine();
+            int alunoTurma = sc.nextInt();
 
             System.out.println("Turno do Aluno: ");
             int alunoTurno = sc.nextInt();
@@ -106,7 +109,6 @@ public class Program {
     //função para remover um aluno
     public static void removerAluno(){
         Aluno alunoEncontrado = buscarIdAluno();
-
         if (alunoEncontrado != null){
             System.out.println("Aluno Código '"+alunoEncontrado.getIdAluno()+"' Removido");
             alunos.remove(alunoEncontrado);
@@ -133,5 +135,16 @@ public class Program {
         }
     }
 
-
+    public static Aluno buscarTurma(){
+        System.out.println("Informe a Turma: ");
+        int turmaNum = sc.nextInt();
+        System.out.println("Informe o Turno");
+        int turnoNum = sc.nextInt();
+        for (Aluno aluno: alunos){
+            if (turmaNum == aluno.getTurma() && turnoNum == aluno.getTurno()){
+                System.out.println(aluno);
+            }
+        }
+        return null;
+    }
 }
