@@ -1,13 +1,14 @@
 package edu.marcella.Model.Entities;
 
 public class Aluno {
+    private static int count = 0;
     private int idAluno;
     private String nome;
     private int turma;
     private int turno;
 
-    public Aluno(int idAluno, String nome, int turma, int turno) {
-        this.idAluno = idAluno;
+    public Aluno(String nome, int turma, int turno) {
+        setIdAluno(++count);
         this.nome = nome;
         this.turma = turma;
         this.turno = turno;
