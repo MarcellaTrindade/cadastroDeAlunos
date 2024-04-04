@@ -59,9 +59,6 @@ public class Program {
         System.out.println("CADASTRO DE ALUNO: \n");
 
         do {
-            System.out.println("Código do Aluno: ");
-            int alunoCodId = sc.nextInt();
-            sc.nextLine();
 
             System.out.println("Nome do Aluno: ");
             String alunoNome = sc.nextLine();
@@ -73,14 +70,15 @@ public class Program {
             int alunoTurno = sc.nextInt();
             sc.nextLine();
 
-            alunos.add(new Aluno(alunoCodId, alunoNome, alunoTurma, alunoTurno));
-            bubbleSort(alunos);
+            alunos.add(new Aluno(alunoNome, alunoTurma, alunoTurno));
             System.out.println(alunos.get(alunos.size() - 1));
 
             System.out.println("Deseja adicionar mais algum aluno?");
             System.out.println("Digite 0 - Não");
             System.out.println("Digite 1 - Sim");
             resp = sc.nextInt();
+
+            sc.nextLine();
         }while (resp == 1);
     }
 
@@ -115,31 +113,14 @@ public class Program {
         }
     }
 
-    public static void bubbleSort(List<Aluno> alunos){
-        int n = alunos.size();
-        boolean swapped;
-
-        for (int i = 0; i < n - 1; i++){
-            swapped = false;
-            for (int j = 0; j < n - 1; j++){
-                if (alunos.get(j).getIdAluno() > alunos.get(j + 1).getIdAluno()){
-                    Aluno temp = alunos.get(j);
-                    alunos.set(j, alunos.get(j+1));
-                    alunos.set(j + 1, temp);
-                    swapped = true;
-                }
-            }
-            if (!swapped){
-                break;
-            }
-        }
-    }
-
     public static Aluno buscarTurma(){
+
         System.out.println("Informe a Turma: ");
         int turmaNum = sc.nextInt();
+
         System.out.println("Informe o Turno");
         int turnoNum = sc.nextInt();
+
         for (Aluno aluno: alunos){
             if (turmaNum == aluno.getTurma() && turnoNum == aluno.getTurno()){
                 System.out.println(aluno);
